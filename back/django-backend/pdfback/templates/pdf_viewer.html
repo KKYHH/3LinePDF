@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+</head>
+<body>
+    {% if pdf_text %}
+    <div>
+        <h2>PDF Text:</h2>
+        <pre>{{ pdf_text }}</pre>
+    </div>
+    {% endif %}
+    {% if response %}
+    <div>
+        <h2>OpenAI Response:</h2>
+        <p>{{ response }}</p>
+    </div>
+    {% endif %}
+    {% if not pdf_text and not response %}
+    <p>No content available.</p>
+    {% endif %}
+</body>
+</html>
