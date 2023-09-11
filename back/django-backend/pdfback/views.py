@@ -11,12 +11,14 @@ import openai
 # 텍스트 전처리 <- 다양하게 고려할 수 있는데 방법이 많다
 
 # 현재 정성록 playground api
-openai.api_key = "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"
+# api가 계속 없어지는 에러가 발생해서 만약 에러가 발생하면 각자 api를 발행하거나 카톡으로 애기 주셈
+openai.api_key = "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"
 
+# 파일 업로드 처리를 django의 method에 의존
 def handle_upload_file(f):
-    with open('some/file/name.txt', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
+    file_path = default_storage.save(f.name, f)
+    return file_path
+
 
 # 가져온 pdf 파일을 저장하는 로직들 
 def pdf_save(request):
@@ -35,7 +37,7 @@ def preprocess_text(text):
     # 특수 문자 제거
     cleaned_text = re.sub(r'[^\w\s]', '', text)
     # 줄바꿈을 공백으로 대체
-    cleaned_text = cleaned_text.replace('\n', ' ').replace('\r', '')
+    cleaned_text = cleaned_text.replace('\n', '').replace('\r', '')
     return cleaned_text
 
 # 글자 추출 메소드
@@ -46,7 +48,6 @@ def extract_text(pdf_content):
     for page_num in range(pdf_document.page_count):
         page = pdf_document[page_num]
         page_text = page.get_text("text")
-        print(page_text)
         cleaned_text = preprocess_text(page_text)
         text += cleaned_text
 
@@ -60,8 +61,7 @@ def get_completion(prompt):
     max_tokens = 16000
 
     total_tokens = len(system_message.split()) + len(user_message.split())
-    print(system_message.split())
-    print(user_message.split())
+    print(user_message)
 
     messages = [
         {"role": "system", "content": system_message},
@@ -77,14 +77,14 @@ def get_completion(prompt):
             max_tokens = tokens_to_request,
             temperature = 0.5,
         )
-        response += query.choice[0].message["content"]
+        response += query.choices[0].message["content"]
         total_tokens -= tokens_to_request
 
-        if query.choice[0].finish_reason == "stop":
+        if query.choices[0].finish_reason == "stop":
             break # 정상적으로 다하면 break
-        elif query.choice[0].finish_reason == "error":
+        elif query.choices[0].finish_reason == "error":
             break
-        return response
+    return response
     
 def query_view(request):
     if request.method == "POST":
