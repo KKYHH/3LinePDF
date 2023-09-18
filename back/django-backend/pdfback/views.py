@@ -12,7 +12,7 @@ import openai
 
 # 현재 정성록 playground api
 # api가 계속 없어지는 에러가 발생해서 만약 에러가 발생하면 각자 api를 발행하거나 카톡으로 애기 주셈
-openai.api_key = "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"
+openai.api_key = "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"
 
 # 파일 업로드 처리를 django의 method에 의존
 def handle_upload_file(f):
