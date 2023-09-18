@@ -12,7 +12,7 @@ import openai
 
 # 현재 정성록 playground api
 # api가 계속 없어지는 에러가 발생해서 만약 에러가 발생하면 각자 api를 발행하거나 카톡으로 애기 주셈
-openai.api_key = "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"
+openai.api_key = "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"
 
 # 파일 업로드 처리를 django의 method에 의존
 def handle_upload_file(f):
@@ -56,8 +56,9 @@ def extract_text(pdf_content):
 
 # openai api 하고 통신하는 부분
 def get_completion(prompt):
-    system_message = "you are chatbot that summarize PDF content."
-    user_message = prompt + "pdf 내용을 3로 요약해줘"
+    system_message = "You are a respected writer in the world You have a professional level of understanding of the text in each field no matter what field the content of the PDF is You can handle them very well"
+    
+    user_message = prompt + "PDF 내용을 가장 중요한 핵심내용으로 세줄 요약 해주십시오"
     max_tokens = 16000
 
     total_tokens = len(system_message.split()) + len(user_message.split())
