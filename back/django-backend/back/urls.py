@@ -20,6 +20,6 @@ from pdfback import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.query_view, name='query'),
+    path('show/', views.query_view, name='query'),
     path('pdf/', views.pdf_save, name='pdf_save')
 ]

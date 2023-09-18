@@ -10,9 +10,9 @@ import openai
 # text embeding -> 사용할 만한 모델이 openai 꺼라서 결국 애매
 # 텍스트 전처리 <- 다양하게 고려할 수 있는데 방법이 많다
 
-# 현재 정성록 playground api
+
 # api가 계속 없어지는 에러가 발생해서 만약 에러가 발생하면 각자 api를 발행하거나 카톡으로 애기 주셈
-openai.api_key = "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"
+openai.api_key = "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"
 
 # 파일 업로드 처리를 django의 method에 의존
 def handle_upload_file(f):
