@@ -38,3 +38,6 @@ Temporary Items
 
 
 3LineProject/
+back/django-backend/back/__pycache__/
+back/django-backend/pdfback/__pycache__/
+back/django-backend/pdfback/migrations/__pycache__/
