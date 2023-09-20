@@ -12,6 +12,8 @@ import openai
 
 
 # api가 계속 없어지는 에러가 발생해서 만약 에러가 발생하면 각자 api를 발행하거나 카톡으로 애기 주셈
+
+# openai api 토큰이 지속적으로 만료가 됨
 openai.api_key = "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"
 
 # 파일 업로드 처리를 django의 method에 의존
